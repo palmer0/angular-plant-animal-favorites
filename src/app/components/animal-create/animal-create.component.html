@@ -1,1 +1,31 @@
-<p>animal-create works!</p>
+<div class="container col-4 m-4">
+
+  <h2>Create Animal</h2>
+
+  <div class="form-group">
+    <label for="name">Name: </label>
+    <input type="text" id="name" name="name"
+           class="form-control" [(ngModel)]="newAnimal.name">
+  </div>
+
+
+  <div class="form-group mt-2">
+    <label for="description">Description: </label>
+    <textarea id="description" name="description"  class="form-control"
+              [(ngModel)]="newAnimal.description"></textarea>
+  </div>
+
+
+
+  <div class="form-group mt-2 mb-4">
+    <label for="image">Image:&nbsp;</label>
+    <input type="file" id="image"  class="form-control-file"
+           (change)="onFileSelected($event)">
+  </div>
+
+  <button (click)="createAnimal()"
+          class="btn btn-success me-2">Save</button>
+
+  <button routerLink="/animals"
+          class="btn btn-primary ">Go to Animals</button>
+</div>

@@ -1,1 +1,60 @@
-<p>favorites works!</p>
+<div class="container col-6 m-4">
+
+  <h2>Favorites</h2>
+
+  <button routerLink="/plants"
+          class="btn btn-primary me-2">Go to Plants
+  </button>
+  <button routerLink="/animals"
+          class="btn btn-primary me-2">Go to Animals
+  </button>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-6">
+
+      <h4>Animals</h4>
+
+
+      <div *ngFor="let animal of animals" class="card mt-2">
+        <div class="card-body">
+
+          <div><strong>Name:</strong> {{ animal.name }}</div>
+          <div><strong>Description:</strong> {{ animal.description }}</div>
+
+          <br>
+
+          <img src="{{ animal.imageUrl }}" style="width: 100%;"
+               alt="{{ animal.name }} image" class="mb-2">
+
+        </div>
+
+      </div>
+    </div>
+
+
+    <br>
+
+    <div class="col-6">
+      <h4>Plants</h4>
+
+      <div *ngFor="let plant of plants" class="card mt-2">
+        <div class="card-body">
+
+          <div><strong>Name:</strong> {{ plant.name }}</div>
+          <div><strong>Description:</strong> {{ plant.description }}</div>
+
+          <br>
+
+          <img src="{{ plant.imageUrl }}" style="width: 100%;"
+               alt="{{ plant.name }} image" class="mb-2">
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

@@ -1,1 +1,33 @@
-<p>animal-detail works!</p>
+<div *ngIf="animal" class="container col-6 m-4">
+
+  <h2>Animal Detail</h2>
+
+  <!--<div>ID: {{ animal.id }}</div>-->
+  <div><strong>Name:</strong> {{ animal.name }}</div>
+  <div><strong>Description:</strong> {{ animal.description }}</div>
+
+  <br>
+
+  <img src="{{ animal.imageUrl }}" style="width: 100%;"
+       alt="{{ animal.name }} image" class="mb-2">
+
+  <br>
+
+  <button routerLink="/animals"
+          class="btn btn-primary me-2">Go to Animals</button>
+
+  <!--<button (click)="favoriteAnimal()">Favorite</button>-->
+  <button *ngIf="!animal.favorite" class="btn btn-secondary me-2"
+          (click)="favoriteAnimal()">Add Favorite</button>
+  <button *ngIf="animal.favorite" class="btn btn-secondary me-2"
+          (click)="favoriteAnimal()">Remove Favorite</button>
+
+  <!--
+  <button *ngIf="animal.favorite"
+          class="btn btn-success" disabled>Favorite</button>
+  -->
+
+  <!--<button (click)="editAnimal()">Edit</button>-->
+  <button (click)="deleteAnimal()" class="btn btn-danger">Delete</button>
+
+</div>

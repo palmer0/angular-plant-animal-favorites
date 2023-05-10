@@ -1,1 +1,34 @@
-<p>plant-detail works!</p>
+<div *ngIf="plant" class="container col-6 m-4">
+
+  <h2>Plant Detail</h2>
+
+  <!--<div>ID: {{ plant.id }}</div>-->
+  <div><strong>Name:</strong> {{ plant.name }}</div>
+  <div><strong>Description:</strong> {{ plant.description }}</div>
+
+  <br>
+
+  <img src="{{ plant.imageUrl }}" style="width: 100%;"
+       alt="{{ plant.name }} image" class="mb-2">
+
+  <br>
+
+
+  <button routerLink="/plants"
+          class="btn btn-primary me-2">Go to Plants</button>
+
+  <!--<button (click)="favoritePlant()">Favorite</button>-->
+  <button *ngIf="!plant.favorite" class="btn btn-secondary me-2"
+          (click)="favoritePlant()">Add Favorite</button>
+  <button *ngIf="plant.favorite" class="btn btn-secondary me-2"
+          (click)="favoritePlant()">Remove Favorite</button>
+
+  <!--
+  <button *ngIf="plant.favorite"
+          class="btn btn-success" disabled>Favorite</button>
+  -->
+
+  <!--<button (click)="editPlant()">Edit</button>-->
+  <button (click)="deletePlant()" class="btn btn-danger ">Delete</button>
+
+</div>

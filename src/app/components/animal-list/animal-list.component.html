@@ -1,1 +1,73 @@
-<p>animal-list works!</p>
+<div class="container col-6 m-4">
+
+  <h2>Animals</h2>
+
+  <button routerLink="/favorites"
+          class="btn btn-primary me-2">Go to Favorites</button>
+  <button routerLink="/plants"
+          class="btn btn-primary me-2">Go to Plants</button>
+  <button routerLink="/animal"
+          class="btn btn-success">Create Animal</button>
+
+  <hr>
+
+  <label>
+    <input type="checkbox" [(ngModel)]="showFavorites"> Show only favorites
+  </label>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Picture</th>
+      <th>Name</th>
+      <th>Favorite</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let animal of animals  | filterFavorites:showFavorites">
+      <td>
+          <img [src]="animal.imageUrl"
+               alt="{{ animal.description }} " style="width: 80px;">
+      </td>
+      <td>{{ animal.name }}</td>
+      <td>
+        <button *ngIf="!animal.favorite" class="btn btn-secondary"
+                (click)="favoriteAnimal(animal)">Add Favorite</button>
+        <button *ngIf="animal.favorite" class="btn btn-secondary"
+                (click)="favoriteAnimal(animal)">Remove Favorite</button>
+        <!--
+        <button *ngIf="animal.favorite"
+                class="btn btn-success" disabled>Favorite</button>
+        -->
+      </td>
+
+      <td>
+        <button routerLink="/animals/{{ animal.id }}"
+                class="btn btn-info me-2">Select</button>
+        <button class="btn btn-danger"
+                (click)="deleteAnimal(animal)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!--
+<h2>Animal List</h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let animal of animals">
+    <td>{{ animal.name }}</td>
+    <td>
+      <button (click)="selectAnimal(animal)">View</button>
+    </td>
+  </tr>
+</table>
+
+-->

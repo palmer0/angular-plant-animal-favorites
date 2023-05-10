@@ -1,1 +1,80 @@
-<p>plant-list works!</p>
+<div class="container col-6 m-4">
+
+  <h2>Plants</h2>
+
+  <button routerLink="/favorites"
+          class="btn btn-primary me-2">Go to Favorites</button>
+  <button routerLink="/animals"
+          class="btn btn-primary me-2">Go to Animals</button>
+  <button routerLink="/plant"
+          class="btn btn-success">Create Plant</button>
+
+  <hr>
+
+  <label>
+    <input type="checkbox" [(ngModel)]="showFavorites"> Show only favorites
+  </label>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Picture</th>
+      <th>Name</th>
+      <th>Favorite</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let plant of plants | filterFavorites:showFavorites">
+
+      <td>
+        <img [src]="plant.imageUrl"
+             alt="{{ plant.description }} " style="width: 80px;">
+      </td>
+
+      <td>{{ plant.name }}</td>
+      <td>
+        <button *ngIf="!plant.favorite" class="btn btn-secondary "
+                (click)="favoritePlant(plant)">Add Favorite</button>
+        <button *ngIf="plant.favorite" class="btn btn-secondary"
+                (click)="favoritePlant(plant)">Remove Favorite</button>
+
+        <!--
+        <button *ngIf="plant.favorite"
+                class="btn btn-success" disabled>Favorite</button>
+        -->
+      </td>
+
+      <td>
+        <button routerLink="/plants/{{ plant.id }}"
+                class="btn btn-info me-2">Select</button>
+        <button class="btn btn-danger"
+                (click)="deletePlant(plant)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+
+
+<!--
+<h2>Plant List</h2>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let plant of plants">
+    <td>{{ plant.name }}</td>
+    <td>
+      <button (click)="selectPlant(plant)">Select</button>
+      <button (click)="deletePlant(plant)">Delete</button>
+      <button (click)="favoritePlant(plant)">Favorite</button>
+
+    </td>
+  </tr>
+</table>
+
+-->
